@@ -1,6 +1,6 @@
 ﻿import { G } from '../constants';
-import { type Vec3, add, scale, sub } from '../math/vec';
-import { type SystemDocument, bodyById } from '../model/document';
+import { add, scale, sub, type Vec3 } from '../math/vec';
+import { bodyById, type SystemDocument } from '../model/document';
 import type { Body } from '../model/schema';
 import { resolveElements, stateFromElements, type StateVector } from './elements';
 

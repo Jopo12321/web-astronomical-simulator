@@ -1,4 +1,4 @@
-﻿import { type SystemDocument, systemDocumentSchema } from './schema';
+﻿import { systemDocumentSchema, type SystemDocument } from './schema';
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);

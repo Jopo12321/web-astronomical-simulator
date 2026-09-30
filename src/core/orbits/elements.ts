@@ -1,6 +1,6 @@
 ﻿import { DAY_S, JULIAN_CENTURY_D } from '../constants';
 import { wrapTwoPi } from '../math/angles';
-import { type Vec3, cross, dot, norm, unit } from '../math/vec';
+import { cross, dot, norm, unit, type Vec3 } from '../math/vec';
 import { eccentricAnomaly, trueAnomalyFromEccentric } from './kepler';
 
 /** Secular rates per Julian century. Angles are radians. `L` includes mean motion. */
