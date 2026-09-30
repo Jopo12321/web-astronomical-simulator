@@ -32,7 +32,7 @@ html, body, #app { margin: 0; height: 100%; background: var(--bg); color: var(--
 .topbar p { margin: 0.1rem 0 0; color: var(--muted); font-size: 0.8rem; }
 
 .toolbar, .tabs, .stack { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
-.stack { flex-direction: column; align-items: stretch; padding: 0.7rem; }
+.stack { flex-direction: column; align-items: stretch; padding: 0.7rem; min-width: 0; max-width: 100%; }
 
 button, input {
   background: #101820;
@@ -49,7 +49,18 @@ button:hover, .tab.active { border-color: var(--accent); }
 .clock { color: var(--muted); font-variant-numeric: tabular-nums; }
 .speed input { width: 4.5rem; }
 
-.workspace { flex: 1; min-height: 0; display: grid; grid-template-columns: 200px 1fr 340px; }
+.workspace {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr) minmax(0, 340px);
+}
+
+.tree, .panel, .map {
+  min-width: 0;
+  max-width: 100%;
+}
 
 .tree, .panel {
   border-right: 1px solid var(--line);
@@ -83,21 +94,40 @@ label.check { flex-direction: row; align-items: center; gap: 0.45rem; }
 label.check input { width: auto; flex: 0 0 auto; }
 .field {
   display: grid;
-  grid-template-columns: 11rem 1fr;
+  grid-template-columns: minmax(0, 8.75rem) minmax(0, 1fr);
   align-items: center;
   gap: 0.15rem 0.5rem;
   font-size: 0.8rem;
   color: var(--muted);
+  min-width: 0;
+  max-width: 100%;
+}
+.field input,
+.stack > label:not(.check) > input,
+.stack > label:not(.check) > select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 .field .help { grid-column: 1 / -1; margin: 0; }
 .row-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .guide { padding: 0.2rem 0.8rem 1rem; font-size: 0.88rem; line-height: 1.45; }
 .guide h2 { font-size: 0.95rem; margin: 0.85rem 0 0.3rem; }
 .guide ul { margin: 0.2rem 0; padding-left: 1.1rem; }
-.facts { margin: 0; padding: 0.7rem; }
-.facts div { display: flex; justify-content: space-between; gap: 0.5rem; padding: 0.25rem 0; border-bottom: 1px solid var(--line); }
-.facts dt { color: var(--muted); }
-.facts dd { margin: 0; }
+.facts { margin: 0; padding: 0.7rem; min-width: 0; max-width: 100%; }
+.facts div {
+  display: grid;
+  grid-template-columns: minmax(0, 7rem) minmax(0, 1fr);
+  align-items: start;
+  gap: 0.35rem 0.5rem;
+  min-width: 0;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.facts dt { color: var(--muted); min-width: 0; }
+.facts dd { margin: 0; min-width: 0; overflow-wrap: break-word; }
+.azgaar-copy, .hint, .guide { max-width: 100%; overflow-wrap: break-word; }
+.azgaar-copy { white-space: pre-wrap; margin: 0; }
 .warn { color: var(--warn); margin: 0; font-size: 0.85rem; }
 .status, .hint { color: var(--muted); font-size: 0.8rem; padding: 0 0.7rem; }
 .checks { list-style: none; margin: 0; padding: 0 0.7rem 1rem; font-size: 0.75rem; }

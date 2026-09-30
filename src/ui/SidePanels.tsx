@@ -9,6 +9,7 @@ import {
   surfaceGravity,
 } from '../core/physics/derived';
 import { checkHorizons } from '../core/validate/horizons';
+import { worldBrief } from '../core/world/brief';
 import { jdToCalendar } from '../core/time/julian';
 import { t } from '../i18n';
 import { Editor } from './Editor';
@@ -122,15 +123,37 @@ function Data({ body }: { body: Body }) {
   }
   const when = jdToCalendar(system.value.epochJd);
   rows.push(['Epoch', `${when.year}-${when.month}-${when.day}`]);
+  const brief = worldBrief(doc, body);
+  if (brief) {
+    for (const line of brief.lines) rows.push([line.label, line.value]);
+  }
+  const azgaar = body.id === doc.homeBodyId ? (brief?.azgaar ?? null) : null;
   return (
-    <dl className="facts">
-      {rows.map(([label, value]) => (
-        <div key={label}>
-          <dt>{label}</dt>
-          <dd>{value}</dd>
+    <div>
+      <dl className="facts">
+        {rows.map(([label, value]) => (
+          <div key={label}>
+            <dt>{label}</dt>
+            <dd>{value}</dd>
+          </div>
+        ))}
+      </dl>
+      {azgaar ? (
+        <div className="stack">
+          <p className="hint azgaar-copy">{azgaar.text}</p>
+          <button
+            type="button"
+            onClick={() => {
+              void navigator.clipboard.writeText(azgaar.copyText).then(() => {
+                statusMessage.value = 'Azgaar temperatures copied.';
+              });
+            }}
+          >
+            Copy for Azgaar
+          </button>
         </div>
-      ))}
-    </dl>
+      ) : null}
+    </div>
   );
 }
 

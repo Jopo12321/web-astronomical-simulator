@@ -7,6 +7,7 @@ import type { Body, CalendarSpec, SystemDocument } from '../core/model/schema';
 import { placeSystem } from '../core/orbits/system';
 import { surfaceGravity } from '../core/physics/derived';
 import { yearAndDay } from '../core/physics/home';
+import { worldBrief } from '../core/world/brief';
 import {
   findSyzygy,
   meeusMoon,
@@ -44,6 +45,8 @@ export function almanacMarkdown(doc: SystemDocument): string {
     '## Home world',
     '',
     home ? homeSection(ready, home) : 'No home world is selected. Pick one in the app, or the first planet is used after you generate a system.',
+    '',
+    home ? worldSection(ready, home) : '',
     '',
     '## Calendar',
     '',
@@ -108,6 +111,14 @@ function roughTemperature(doc: SystemDocument, home: Body): number | null {
     samples: 8,
   });
   return meanTemperature(grid);
+}
+
+function worldSection(doc: SystemDocument, home: Body): string {
+  const brief = worldBrief(doc, home);
+  if (!brief) return '';
+  const facts = brief.lines.map((line) => `- **${line.label}.** ${line.value}`).join('\n');
+  const azgaar = brief.azgaar ? `## Azgaar map\n\n${brief.azgaar.text}` : '';
+  return `## Sunlight, tides, and limits\n\n${facts}\n\n${azgaar}`;
 }
 
 function calendarSection(calendar: CalendarSpec | undefined): string {

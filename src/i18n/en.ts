@@ -47,6 +47,9 @@ export const en = {
     'AU is the distance from Earth to the Sun. Planet masses are in Earth masses, and the star is in solar masses. Orbit angles are in degrees: inclination is the tilt of the orbit, the node is where the orbit crosses the reference plane, periapsis is the closest point, and mean anomaly is where the body sits at the start date. Axial tilt is the lean of the spin axis. Watch latitude is the latitude you stand at when the Almanac talks about eclipses. Eclipse separation is how many degrees the moon sits from the center of the star.',
   guideDistance:
     'Under the orbit distance, Tools also shows how far the body is right now, and how that compares with Earth.',
+  guideAzgaarTitle: 'Azgaar’s map',
+  guideAzgaar:
+    'Azgaar’s map uses only three temperatures: equator, north pole, and south pole. Data and the Almanac give those for the home world, and Copy for Azgaar puts them on the clipboard. Rainfall is not astronomy, so precipitation stays a choice in Azgaar. Day length, tides, eclipses, and how big the giant looks are for the story, not for the map generator.',
 } as const;
 
 export type MessageKey = keyof typeof en;

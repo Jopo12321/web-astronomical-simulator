@@ -36,6 +36,8 @@ export function Guide() {
       <h2>{t('guideUnitsTitle')}</h2>
       <p>{t('guideUnits')}</p>
       <p>{t('guideDistance')}</p>
+      <h2>{t('guideAzgaarTitle')}</h2>
+      <p>{t('guideAzgaar')}</p>
     </div>
   );
 }
