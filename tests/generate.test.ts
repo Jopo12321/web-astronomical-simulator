@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+﻿import { describe, expect, it } from 'vitest';
 import { AU_M, GM_SUN, G } from '../src/core/constants';
 import { leapRule } from '../src/core/calendar/leap';
 import { circumbinaryCritical } from '../src/core/orbits/binary';
@@ -30,6 +30,16 @@ describe('generator', () => {
     expect(home.orbit.a).toBeGreaterThan(zone.innerM);
     expect(home.orbit.a).toBeLessThan(zone.outerM);
     expect(first.bodies.map((body) => body.orbit?.a)).toEqual(second.bodies.map((body) => body.orbit?.a));
+  });
+
+  it('treats custom as one star and does not keep a binary when the layout is solar-like', () => {
+    const custom = generateSystem({ ...settings, architecture: 'custom', starCount: 2 });
+    expect(custom.bodies.filter((body) => body.kind === 'star')).toHaveLength(1);
+    expect(custom.bodies.filter((body) => body.kind === 'planet')).toHaveLength(0);
+    expect(custom.settings.starCount).toBe(1);
+    const solar = generateSystem({ ...settings, architecture: 'solar-like', starCount: 2 });
+    expect(solar.bodies.some((body) => body.id === 'companion')).toBe(false);
+    expect(solar.bodies.filter((body) => body.kind === 'planet').length).toBeGreaterThan(1);
   });
 
   it('locks a red-dwarf world and keeps a circumbinary world outside the critical orbit', () => {

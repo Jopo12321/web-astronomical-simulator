@@ -1,4 +1,4 @@
-import { AU_M, G, GM_SUN, J2000_JD, L_SUN_W, R_SUN_M, SIGMA } from '../constants';
+﻿import { AU_M, G, GM_SUN, J2000_JD, L_SUN_W, R_SUN_M, SIGMA } from '../constants';
 import { sfc32 } from '../math/rng';
 import { parseSystemDocument } from '../model/document';
 import type { Body, GeneratorSettings, SystemDocument } from '../model/schema';
@@ -53,12 +53,23 @@ function planetSpacing(architecture: GeneratorSettings['architecture'], count: n
   return solar.slice(0, count).map((au) => au * range(rng, 0.9, 1.1));
 }
 
+function normalizedSettings(settings: GeneratorSettings): GeneratorSettings {
+  const binary =
+    settings.architecture === 'circumbinary' || settings.architecture === 'circumstellar';
+  const starCount = (binary ? 2 : 1) as 1 | 2;
+  return { ...settings, starCount };
+}
+
 export function generateSystem(settings: GeneratorSettings, previous?: SystemDocument): SystemDocument {
-  const rng = sfc32(settings.seed || 'system');
-  const lockedStar = settings.locks.includes('star') ? previous?.bodies.find((body) => body.kind === 'star') : undefined;
+  const chosen = normalizedSettings(settings);
+  const rng = sfc32(chosen.seed || 'system');
+  const lockedStar = chosen.locks.includes('star')
+    ? previous?.bodies.find((body) => body.kind === 'star')
+    : undefined;
   let massSolar = lockedStar ? lockedStar.massKg / M_SUN : range(rng, 0.6, 1.3);
-  if (settings.architecture === 'red-dwarf') massSolar = lockedStar ? massSolar : 0.25;
-  if (settings.starCount === 2) massSolar = lockedStar ? massSolar : range(rng, 0.8, 1.2);
+  if (chosen.architecture === 'custom') massSolar = lockedStar ? massSolar : 1;
+  if (chosen.architecture === 'red-dwarf') massSolar = lockedStar ? massSolar : 0.25;
+  if (chosen.starCount === 2) massSolar = lockedStar ? massSolar : range(rng, 0.8, 1.2);
   const companionSolar = range(rng, 0.4, massSolar);
   const primary = starBody(massSolar, 'star', 'Primary', null);
   if (lockedStar) {
@@ -73,10 +84,20 @@ export function generateSystem(settings: GeneratorSettings, previous?: SystemDoc
   const zone = habitableZone(luminosity, temperature);
   const zoneAu = { inner: zone.innerM / AU_M, outer: zone.outerM / AU_M };
   const bodies: Body[] = [primary];
-  const binary = settings.starCount === 2 || settings.architecture === 'circumbinary' || settings.architecture === 'circumstellar';
+  if (chosen.architecture === 'custom') {
+    return parseSystemDocument({
+      schemaVersion: 1,
+      name: chosen.seed ? `Custom ${chosen.seed}` : 'Custom system',
+      epochJd: J2000_JD,
+      homeBodyId: null,
+      settings: chosen,
+      bodies,
+    });
+  }
+  const binary = chosen.starCount === 2;
 
   if (binary) {
-    const separationAu = settings.architecture === 'circumstellar' ? 15 : 0.25;
+    const separationAu = chosen.architecture === 'circumstellar' ? 15 : 0.25;
     const mu = companionSolar / (massSolar + companionSolar);
     const eccentricity = 0.1;
     const separation = separationAu * AU_M;
@@ -92,10 +113,12 @@ export function generateSystem(settings: GeneratorSettings, previous?: SystemDoc
     const totalL = luminosity + (companion.luminosityW ?? 0);
     const totalT = temperature;
     const wideZone = habitableZone(totalL, totalT);
-    if (settings.architecture === 'circumstellar') {
-      const limit = circumstellarCritical(mu, eccentricity) * separation;
+    if (chosen.architecture === 'circumstellar') {
+      const limit = Math.max(separation * 0.05, circumstellarCritical(mu, eccentricity) * separation);
       const home = Math.min(Math.sqrt(zone.innerM * zone.outerM), limit * 0.6);
-      bodies.push(world('home', 'Haven', 'star', home, M_EARTH, primary.massKg, true, settings.tidalLock === true));
+      bodies.push(
+        world('home', 'Haven', 'star', Math.max(home, primary.radiusM * 3), M_EARTH, primary.massKg, true, chosen.tidalLock === true),
+      );
     } else {
       const limit = circumbinaryCritical(mu, eccentricity) * separation;
       const home = Math.max(limit * 1.3, Math.sqrt(wideZone.innerM * wideZone.outerM));
@@ -104,10 +127,10 @@ export function generateSystem(settings: GeneratorSettings, previous?: SystemDoc
   } else {
     const count = 6;
     const scale = Math.sqrt(Math.max(luminosity, 1e20) / L_SUN_W);
-    const axes = planetSpacing(settings.architecture, count, rng).map((au) => au * scale);
+    const axes = planetSpacing(chosen.architecture, count, rng).map((au) => au * scale);
     const center = Math.sqrt(Math.max(zoneAu.inner, 0.01) * Math.max(zoneAu.outer, 0.02));
     let homeIndex = 0;
-    if (settings.ensureHabitable && Number.isFinite(center)) {
+    if (chosen.ensureHabitable && Number.isFinite(center)) {
       let best = Number.POSITIVE_INFINITY;
       axes.forEach((au, index) => {
         const gap = Math.abs(Math.log(au / center));
@@ -121,8 +144,8 @@ export function generateSystem(settings: GeneratorSettings, previous?: SystemDoc
     axes.forEach((au, index) => {
       const giant = au > 2.7 * scale;
       const mass = giant ? M_EARTH * range(rng, 40, 300) : M_EARTH * range(rng, 0.2, 3);
-      const home = settings.ensureHabitable && index === homeIndex;
-      const locked = (settings.architecture === 'red-dwarf' || settings.tidalLock === true) && home;
+      const home = chosen.ensureHabitable && index === homeIndex;
+      const locked = (chosen.architecture === 'red-dwarf' || chosen.tidalLock === true) && home;
       const planet = world(
         `p${index + 1}`,
         NAMES[index] ?? `Planet ${index + 1}`,
@@ -138,7 +161,7 @@ export function generateSystem(settings: GeneratorSettings, previous?: SystemDoc
     });
   }
 
-  if (settings.habitableMoon && !binary) {
+  if (chosen.habitableMoon && !binary) {
     const host = bodies.find((body) => body.kind === 'planet' && body.massKg > 20 * M_EARTH);
     if (host) {
       const moon = moonOf(host, primary.massKg, rng, true);
@@ -154,7 +177,7 @@ export function generateSystem(settings: GeneratorSettings, previous?: SystemDoc
     name: settings.seed ? `System ${settings.seed}` : 'Generated system',
     epochJd: J2000_JD,
     homeBodyId: home?.id ?? bodies[1]?.id ?? null,
-    settings,
+    settings: chosen,
     bodies,
   });
 }

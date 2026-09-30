@@ -1,10 +1,10 @@
-import { buildSolarCalendar } from '../core/calendar/leap';
+﻿import { buildSolarCalendar } from '../core/calendar/leap';
 import { generateSystem } from '../core/generate/system';
 import { bodyById } from '../core/model/document';
 import type { GeneratorSettings } from '../core/model/schema';
 import { yearAndDay } from '../core/physics/home';
 import { t } from '../i18n';
-import { replaceSystem, system } from './state';
+import { replaceSystem, statusMessage, system } from './state';
 
 const ARCHITECTURES: GeneratorSettings['architecture'][] = [
   'solar-like',
@@ -34,9 +34,12 @@ export function OptionsPanel() {
         Layout
         <select
           value={settings.architecture}
-          onChange={(event) =>
-            update({ architecture: event.currentTarget.value as GeneratorSettings['architecture'] })
-          }
+          onChange={(event) => {
+            const architecture = event.currentTarget.value as GeneratorSettings['architecture'];
+            const binary = architecture === 'circumbinary' || architecture === 'circumstellar';
+            const starCount = (binary ? 2 : 1) as 1 | 2;
+            update({ architecture, starCount });
+          }}
         >
           {ARCHITECTURES.map((name) => (
             <option key={name} value={name}>
@@ -44,6 +47,9 @@ export function OptionsPanel() {
             </option>
           ))}
         </select>
+        <span className="help">
+          Press New system after you pick a layout. Custom starts with only a star, so you add planets in Tools.
+        </span>
       </label>
       <label className="check">
         <input
@@ -82,11 +88,19 @@ export function OptionsPanel() {
       <button
         type="button"
         onClick={() => {
-          const next = { ...settings };
-          if (next.architecture === 'circumbinary' || next.architecture === 'circumstellar') {
-            next.starCount = 2;
+          const binary =
+            settings.architecture === 'circumbinary' || settings.architecture === 'circumstellar';
+          const starCount = (binary ? 2 : 1) as 1 | 2;
+          const next = { ...settings, starCount };
+          try {
+            replaceSystem(generateSystem(next, system.value));
+            statusMessage.value =
+              next.architecture === 'custom'
+                ? 'Custom system ready. Add planets with Tools.'
+                : `Generated a ${next.architecture} system.`;
+          } catch (error) {
+            statusMessage.value = error instanceof Error ? error.message : 'Could not generate that system.';
           }
-          replaceSystem(generateSystem(next, system.value));
         }}
       >
         {t('generate')}
