@@ -49,18 +49,54 @@ jobs:
           exit "$code"
 
       - name: Typecheck
-        run: npm run typecheck
+        run: |
+          set +e
+          npm run typecheck > type-out.txt 2>&1
+          code=$?
+          if [ "$code" -ne 0 ]; then
+            tail -n 40 type-out.txt | while IFS= read -r line; do
+              echo "::error::${line:0:300}"
+            done
+          fi
+          exit "$code"
 
       - name: Test
-        run: npm test
+        run: |
+          set +e
+          npm test > test-out.txt 2>&1
+          code=$?
+          if [ "$code" -ne 0 ]; then
+            tail -n 50 test-out.txt | while IFS= read -r line; do
+              echo "::error::${line:0:300}"
+            done
+          fi
+          exit "$code"
 
       - name: Build
-        run: npm run build
+        run: |
+          set +e
+          npm run build > build-out.txt 2>&1
+          code=$?
+          if [ "$code" -ne 0 ]; then
+            tail -n 40 build-out.txt | while IFS= read -r line; do
+              echo "::error::${line:0:300}"
+            done
+          fi
+          exit "$code"
         env:
           VITE_BASE: /web-astronomical-simulator/
 
       - name: Build offline file
-        run: npm run build:offline
+        run: |
+          set +e
+          npm run build:offline > offline-out.txt 2>&1
+          code=$?
+          if [ "$code" -ne 0 ]; then
+            tail -n 40 offline-out.txt | while IFS= read -r line; do
+              echo "::error::${line:0:300}"
+            done
+          fi
+          exit "$code"
         env:
           OFFLINE: '1'
 

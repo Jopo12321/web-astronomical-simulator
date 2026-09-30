@@ -40,7 +40,7 @@ const offline = process.env.OFFLINE === '1';
 // offline builds stay at /. CI sets VITE_BASE for the hosted build.
 export default defineConfig({
   base: offline ? '/' : (process.env.VITE_BASE ?? '/'),
-  plugins: [preact(), offline ? inlineBuild() : undefined],
+  plugins: [preact(), ...(offline ? [inlineBuild()] : [])],
   build: {
     target: 'es2022',
     sourcemap: !offline,
