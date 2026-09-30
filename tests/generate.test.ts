@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'vitest';
+﻿import { describe, expect, it } from 'vitest';
 import { AU_M, GM_SUN, G } from '../src/core/constants';
 import { leapRule } from '../src/core/calendar/leap';
 import { circumbinaryCritical } from '../src/core/orbits/binary';
 import { leapfrog } from '../src/core/orbits/nbody';
 import { generateSystem } from '../src/core/generate/system';
 import { habitableZone } from '../src/core/physics/habitable';
-import { bodiesCsv } from '../src/io/export';
+import { bodiesCsv, eventsIcs } from '../src/io/export';
 import { solSystem } from '../src/core/presets/sol';
 
 describe('generator', () => {
@@ -78,6 +78,7 @@ describe('calendar, n-body, and export', () => {
 
   it('writes a CSV row for Earth', () => {
     expect(bodiesCsv(solSystem())).toContain('Earth');
+    expect(eventsIcs('Sol', [{ name: 'Epoch', jd: 2451545 }])).toContain('BEGIN:VEVENT');
     expect(AU_M).toBeGreaterThan(0);
     expect(G).toBeGreaterThan(0);
   });

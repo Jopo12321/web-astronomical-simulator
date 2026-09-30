@@ -1,4 +1,4 @@
-export const en = {
+﻿export const en = {
   appTitle: 'Web Astronomical Simulator',
   tagline: 'Fantasy star systems, calculated',
   save: 'Save',
@@ -13,6 +13,7 @@ export const en = {
   share: 'Share',
   csv: 'CSV',
   almanac: 'Almanac',
+  ics: 'Calendar file',
   play: 'Play',
   pause: 'Pause',
   bodies: 'Bodies',

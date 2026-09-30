@@ -1,8 +1,8 @@
-import { effect } from '@preact/signals';
+﻿import { effect } from '@preact/signals';
 import { useEffect, useRef } from 'preact/hooks';
 import { solSystem } from '../core/presets/sol';
 import { jdToCalendar } from '../core/time/julian';
-import { almanacMarkdown, bodiesCsv } from '../io/export';
+import { almanacMarkdown, bodiesCsv, eventsIcs } from '../io/export';
 import { downloadSystem, downloadText, readSystemFile } from '../io/file';
 import { decodeShare, encodeShare } from '../io/share';
 import { loadSlot, saveSlot } from '../io/storage';
@@ -124,6 +124,19 @@ export function App() {
             }
           >
             {t('almanac')}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const doc = system.value;
+              downloadText(
+                'events.ics',
+                eventsIcs(doc.name, [{ name: `${doc.name} epoch`, jd: doc.epochJd }]),
+                'text/calendar',
+              );
+            }}
+          >
+            {t('ics')}
           </button>
           <button
             type="button"
