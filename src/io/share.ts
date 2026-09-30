@@ -22,7 +22,10 @@ export async function encodeShare(doc: SystemDocument): Promise<string> {
 }
 
 export async function decodeShare(value: string): Promise<SystemDocument> {
-  const stream = new Blob([base64ToBytes(value)]).stream().pipeThrough(new DecompressionStream('gzip'));
+  const bytes = base64ToBytes(value);
+  const copy = new ArrayBuffer(bytes.byteLength);
+  new Uint8Array(copy).set(bytes);
+  const stream = new Blob([copy]).stream().pipeThrough(new DecompressionStream('gzip'));
   const text = await new Response(stream).text();
   return parseSystemDocument(JSON.parse(text));
 }
