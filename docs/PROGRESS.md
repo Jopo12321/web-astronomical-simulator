@@ -9,6 +9,10 @@
 
 Kepler solver, element propagation, barycentric moons, and the versioned system file.
 
+## Phase 2 — Solar System reference
+
+JPL Table 1 orbits for the eight planets, checked against Horizons samples from 1900 to 2050.
+
 ## Next
 
-Solar System preset checked against JPL Horizons.
+Derived planet values (gravity, day length, habitable zone) and climate.

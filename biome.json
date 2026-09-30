@@ -48,7 +48,7 @@
   },
   "overrides": [
     {
-      "includes": ["src/core/constants.ts"],
+      "includes": ["src/core/constants.ts", "src/core/presets/sol.ts"],
       "linter": {
         "rules": {
           "correctness": {
