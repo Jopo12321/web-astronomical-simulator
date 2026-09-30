@@ -17,6 +17,10 @@ JPL Table 1 orbits for the eight planets, checked against Horizons samples from 
 
 Gravity, escape speed, solar day, habitable zone, seasons, daylight, and a seasonal temperature model. Checked against the NASA fact sheet and USNO.
 
+## Phase 4 — Sky events
+
+Meeus Moon and Sun, solar and lunar eclipses, conjunctions, and a saros pairing. Checked against Horizons and the NASA eclipse catalog.
+
 ## Next
 
-Eclipses, phases, and the Meeus Moon for the Solar System.
+The editor: orbit map, body editors, save and load.

@@ -48,7 +48,7 @@
   },
   "overrides": [
     {
-      "includes": ["src/core/constants.ts", "src/core/presets/**", "tests/**"],
+      "includes": ["src/core/constants.ts", "src/core/presets/**", "src/core/sky/**", "tests/**"],
       "linter": {
         "rules": {
           "correctness": {
