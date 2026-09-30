@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Physical and astronomical constants.
  * Each value names the defining source. Do not "round for convenience" here;
  * derived displays round at the UI boundary.
@@ -30,6 +30,7 @@ export const T_SUN_K = 5772;
 
 /**
  * Heliocentric gravitational constant from JPL DE440, m^3 s^-2.
+ * Published value 1.32712440041279419×10^20. IEEE-754 rounds the last digits.
  * Source: https://ssd.jpl.nasa.gov/astro_par.html (Park et al. 2021).
  */
 export const GM_SUN = 1.32712440041279419e20;
