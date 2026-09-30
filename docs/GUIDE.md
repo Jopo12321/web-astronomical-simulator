@@ -4,6 +4,8 @@ This app designs a star system and calculates the dates, distances, day length, 
 
 The live app is https://jopo12321.github.io/web-astronomical-simulator/
 
+The source is the [GitHub repository](https://github.com/Jopo12321/web-astronomical-simulator).
+
 You can also download `web-astronomical-simulator.html` from the [releases](https://github.com/Jopo12321/web-astronomical-simulator/releases) and open that file in a browser. The release page itself does not run the app. If the downloaded page stays blank, use the live site.
 
 ![The whole window: the body list, the orbit map, and the side panel](images/window.png)

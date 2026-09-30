@@ -56,6 +56,11 @@ export function Guide() {
             {t('guideDocsSources')}
           </a>
         </li>
+        <li>
+          <a href="https://github.com/Jopo12321/web-astronomical-simulator">
+            {t('guideDocsRepo')}
+          </a>
+        </li>
       </ul>
     </div>
   );

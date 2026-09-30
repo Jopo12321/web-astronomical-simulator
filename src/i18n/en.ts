@@ -55,6 +55,7 @@ export const en = {
   guideDocsGuide: 'User guide',
   guideDocsPhysics: 'Physics notes',
   guideDocsSources: 'Data sources',
+  guideDocsRepo: 'GitHub repository',
 } as const;
 
 export type MessageKey = keyof typeof en;
