@@ -1,0 +1,56 @@
+:root {
+  color-scheme: dark;
+  --bg: #0c1016;
+  --panel: #161d27;
+  --line: #2a3544;
+  --text: #e7eef6;
+  --muted: #93a3b5;
+  --accent: #7eb6ff;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  border-bottom: 1px solid var(--line);
+  padding: 0.75rem 1rem;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.topbar p {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.stage {
+  flex: 1;
+  padding: 1.25rem;
+  max-width: 42rem;
+}
+
+.stage p {
+  line-height: 1.5;
+}

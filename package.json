@@ -1,0 +1,31 @@
+{
+  "name": "web-astronomical-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Generate and calculate fantasy star systems: orbits, calendars, climate, and sky events, checked against the real Solar System.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "vitest run",
+    "lint": "biome check ."
+  },
+  "dependencies": {
+    "@preact/signals": "^2.3.1",
+    "preact": "^10.26.10",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.6",
+    "@preact/preset-vite": "^2.10.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "vitest": "^3.2.4"
+  }
+}
