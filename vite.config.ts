@@ -10,7 +10,7 @@ function inlineBuild(): Plugin {
       const htmlName = Object.keys(bundle).find((name) => name.endsWith('.html'));
       if (!htmlName) return;
       const html = bundle[htmlName];
-      if (!html || html.type !== 'asset') return;
+      if (html?.type !== 'asset') return;
       let source = String(html.source);
       for (const [name, item] of Object.entries(bundle)) {
         if (item.type === 'chunk') {
