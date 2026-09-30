@@ -60,8 +60,13 @@ export function OrbitMap() {
               r={body.id === selectedId.value ? 7 : 4.5}
               fill={body.color ?? '#9ecbff'}
               className="body-dot"
+              role="button"
+              tabIndex={0}
               onClick={() => {
                 selectedId.value = body.id;
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') selectedId.value = body.id;
               }}
             >
               <title>{body.name}</title>

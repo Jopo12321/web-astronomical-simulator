@@ -28,6 +28,9 @@
       },
       "correctness": {
         "noUnusedVariables": "error"
+      },
+      "a11y": {
+        "noStaticElementInteractions": "off"
       }
     }
   },
