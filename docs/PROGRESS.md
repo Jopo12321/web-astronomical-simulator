@@ -21,6 +21,10 @@ Gravity, escape speed, solar day, habitable zone, seasons, daylight, and a seaso
 
 Meeus Moon and Sun, solar and lunar eclipses, conjunctions, and a saros pairing. Checked against Horizons and the NASA eclipse catalog.
 
+## Phase 5–8 — Editor, files, generator, extended systems
+
+Orbit map and editors, save/load, exports, seeded generator, binary layouts, habitable moons, tidal locking, and a short n-body stability check.
+
 ## Next
 
-The editor: orbit map, body editors, save and load.
+Final check on the live site.

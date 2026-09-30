@@ -1,0 +1,28 @@
+﻿name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Install
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - name: Build offline file
+        run: npm run build:offline
+        env:
+          OFFLINE: '1'
+      - name: Publish
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist-offline/index.html

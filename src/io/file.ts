@@ -5,15 +5,19 @@ export function serializeSystem(doc: SystemDocument): string {
   return `${JSON.stringify(doc, null, 2)}\n`;
 }
 
-export function downloadSystem(doc: SystemDocument): void {
-  const blob = new Blob([serializeSystem(doc)], { type: 'application/json' });
+export function downloadText(filename: string, contents: string, type: string): void {
+  const blob = new Blob([contents], { type });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
-  const safe = doc.name.replace(/[^\w.-]+/g, '-').replace(/^-|-$/g, '') || 'system';
   link.href = url;
-  link.download = `${safe}.ssim.json`;
+  link.download = filename;
   link.click();
   URL.revokeObjectURL(url);
+}
+
+export function downloadSystem(doc: SystemDocument): void {
+  const safe = doc.name.replace(/[^\w.-]+/g, '-').replace(/^-|-$/g, '') || 'system';
+  downloadText(`${safe}.ssim.json`, serializeSystem(doc), 'application/json');
 }
 
 export async function readSystemFile(file: File): Promise<SystemDocument> {

@@ -65,8 +65,18 @@ export const calendarSchema = z.object({
 
 export const generatorSettingsSchema = z.object({
   seed: z.string(),
-  architecture: z.enum(['solar-like', 'compact', 'titius-bode', 'custom']),
+  architecture: z.enum([
+    'solar-like',
+    'compact',
+    'titius-bode',
+    'circumbinary',
+    'circumstellar',
+    'red-dwarf',
+    'custom',
+  ]),
   ensureHabitable: z.boolean(),
+  habitableMoon: z.boolean().optional(),
+  tidalLock: z.boolean().optional(),
   starCount: z.union([z.literal(1), z.literal(2)]),
   locks: z.array(z.string()),
 });

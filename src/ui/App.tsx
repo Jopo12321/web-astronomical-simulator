@@ -1,7 +1,11 @@
-﻿import { useEffect, useRef } from 'preact/hooks';
+﻿import { effect } from '@preact/signals';
+import { useEffect, useRef } from 'preact/hooks';
 import { solSystem } from '../core/presets/sol';
 import { jdToCalendar } from '../core/time/julian';
-import { downloadSystem, readSystemFile } from '../io/file';
+import { almanacMarkdown, bodiesCsv } from '../io/export';
+import { downloadSystem, downloadText, readSystemFile } from '../io/file';
+import { decodeShare, encodeShare } from '../io/share';
+import { loadSlot, saveSlot } from '../io/storage';
 import { t } from '../i18n';
 import { OrbitMap } from './OrbitMap';
 import { SidePanels } from './SidePanels';
@@ -38,10 +42,32 @@ export function App() {
     };
     window.addEventListener('dragover', onDrag);
     window.addEventListener('drop', onDrop);
+    const hash = location.hash.startsWith('#s=') ? location.hash.slice(3) : '';
+    if (hash) {
+      void decodeShare(hash).then(replaceSystem).catch(() => {
+        statusMessage.value = t('loadError');
+      });
+    } else {
+      void loadSlot('autosave')
+        .then((doc) => {
+          if (doc) replaceSystem(doc);
+        })
+        .catch(() => undefined);
+    }
+    let timer = 0;
+    const stop = effect(() => {
+      const doc = system.value;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        void saveSlot('autosave', doc);
+      }, 800);
+    });
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener('dragover', onDrag);
       window.removeEventListener('drop', onDrop);
+      stop();
+      window.clearTimeout(timer);
     };
   }, []);
 
@@ -85,6 +111,33 @@ export function App() {
               event.currentTarget.value = '';
             }}
           />
+          <button
+            type="button"
+            onClick={() => downloadText('bodies.csv', bodiesCsv(system.value), 'text/csv')}
+          >
+            {t('csv')}
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              downloadText('almanac.md', almanacMarkdown(system.value), 'text/markdown')
+            }
+          >
+            {t('almanac')}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              void encodeShare({ ...system.value, viewJd: viewJd.value }).then((hash) => {
+                const url = `${location.origin}${location.pathname}#s=${hash}`;
+                void navigator.clipboard.writeText(url).then(() => {
+                  statusMessage.value = url;
+                });
+              });
+            }}
+          >
+            {t('share')}
+          </button>
           <span className="clock">{stamp}</span>
           <button
             type="button"

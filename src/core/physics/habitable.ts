@@ -44,9 +44,11 @@ export function habitableZone(
   luminosityW: number,
   stellarTemperatureK: number,
 ): HabitableZone {
-  const luminositySun = luminosityW / L_SUN_W;
-  const innerAu = Math.sqrt(luminositySun / effectiveFlux(RUNAWAY, stellarTemperatureK));
-  const outerAu = Math.sqrt(luminositySun / effectiveFlux(MAXIMUM_GREENHOUSE, stellarTemperatureK));
+  const luminositySun = Math.max(luminosityW, 1) / L_SUN_W;
+  const innerFlux = Math.max(0.05, effectiveFlux(RUNAWAY, stellarTemperatureK));
+  const outerFlux = Math.max(0.01, effectiveFlux(MAXIMUM_GREENHOUSE, stellarTemperatureK));
+  const innerAu = Math.sqrt(luminositySun / innerFlux);
+  const outerAu = Math.sqrt(luminositySun / outerFlux);
   return { innerM: innerAu * AU_M, outerM: outerAu * AU_M };
 }
 

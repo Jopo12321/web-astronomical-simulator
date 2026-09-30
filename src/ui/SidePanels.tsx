@@ -13,6 +13,7 @@ import {
 import { checkHorizons } from '../core/validate/horizons';
 import { jdToCalendar } from '../core/time/julian';
 import { t } from '../i18n';
+import { OptionsPanel } from './OptionsPanel';
 import {
   panel,
   selectedId,
@@ -37,7 +38,7 @@ export function SidePanels() {
   return (
     <aside className="panel">
       <div className="tabs">
-        {(['layers', 'tools', 'data', 'validation'] as const).map((name) => (
+        {(['layers', 'options', 'tools', 'data', 'validation'] as const).map((name) => (
           <button
             key={name}
             type="button"
@@ -51,6 +52,7 @@ export function SidePanels() {
         ))}
       </div>
       {panel.value === 'layers' ? <Layers /> : null}
+      {panel.value === 'options' ? <OptionsPanel /> : null}
       {panel.value === 'tools' && selected ? <Editor body={selected} onChange={patchBody} /> : null}
       {panel.value === 'data' && selected ? <Data body={selected} /> : null}
       {panel.value === 'validation' ? <Validation /> : null}
