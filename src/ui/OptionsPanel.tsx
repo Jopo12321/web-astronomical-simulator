@@ -1,9 +1,8 @@
-﻿import { buildSolarCalendar } from '../core/calendar/leap';
-import { G } from '../core/constants';
+import { buildSolarCalendar } from '../core/calendar/leap';
 import { generateSystem } from '../core/generate/system';
 import { bodyById } from '../core/model/document';
 import type { GeneratorSettings } from '../core/model/schema';
-import { orbitalPeriodSeconds, solarDaySeconds } from '../core/physics/derived';
+import { yearAndDay } from '../core/physics/home';
 import { t } from '../i18n';
 import { replaceSystem, system } from './state';
 
@@ -93,8 +92,11 @@ export function OptionsPanel() {
         {t('generate')}
       </button>
       <button type="button" onClick={() => attachCalendar()}>
-        Build calendar
+        {t('refreshCalendar')}
       </button>
+      <p className="hint">
+        Stores a calendar in the save file. The Almanac builds one on download if this is empty.
+      </p>
     </div>
   );
 }
@@ -103,18 +105,9 @@ function attachCalendar(): void {
   const doc = system.value;
   if (!doc.homeBodyId) return;
   const home = bodyById(doc, doc.homeBodyId);
-  if (!home.orbit || !home.rotation || !home.parentId) return;
-  const parent = bodyById(doc, home.parentId);
-  let yearOrbit = home.orbit;
-  let gm = G * (parent.massKg + home.massKg);
-  if (home.kind === 'moon' && parent.orbit && parent.parentId) {
-    const star = bodyById(doc, parent.parentId);
-    yearOrbit = parent.orbit;
-    gm = G * (star.massKg + parent.massKg);
-  }
-  const year = orbitalPeriodSeconds(yearOrbit, gm);
-  const day = Math.abs(solarDaySeconds(home.rotation.periodS, year));
-  const calendar = buildSolarCalendar(year / day);
+  const clock = yearAndDay(doc, home);
+  if (!clock) return;
+  const calendar = buildSolarCalendar(clock.yearSeconds / clock.daySeconds);
   calendar.epochJd = doc.epochJd;
   system.value = { ...doc, calendar };
 }

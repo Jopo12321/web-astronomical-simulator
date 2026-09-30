@@ -86,6 +86,8 @@ export const systemDocumentSchema = z.object({
   name: z.string().min(1),
   epochJd: z.number(),
   viewJd: z.number().optional(),
+  /** Latitude on the home world used when the Almanac talks about eclipses. */
+  watchLatitudeDeg: z.number().min(-90).max(90).optional(),
   homeBodyId: z.string().nullable(),
   settings: generatorSettingsSchema,
   bodies: z.array(bodySchema).min(1),

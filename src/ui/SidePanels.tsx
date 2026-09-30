@@ -1,8 +1,6 @@
 import { AU_M, DAY_S, G, L_SUN_W } from '../core/constants';
-import { radToDeg } from '../core/math/angles';
 import { bodyById } from '../core/model/document';
 import type { Body } from '../core/model/schema';
-import { MUTUAL_HILL_STABLE, hillRadius, mutualHillSeparation } from '../core/orbits/stability';
 import { habitableZone } from '../core/physics/habitable';
 import {
   escapeSpeed,
@@ -13,6 +11,8 @@ import {
 import { checkHorizons } from '../core/validate/horizons';
 import { jdToCalendar } from '../core/time/julian';
 import { t } from '../i18n';
+import { Editor } from './Editor';
+import { Guide } from './Guide';
 import { OptionsPanel } from './OptionsPanel';
 import {
   panel,
@@ -25,20 +25,13 @@ import {
 } from './state';
 import { useSignal } from '@preact/signals';
 
-function patchBody(id: string, next: Body): void {
-  system.value = {
-    ...system.value,
-    bodies: system.value.bodies.map((body) => (body.id === id ? next : body)),
-  };
-}
-
 export function SidePanels() {
   const doc = system.value;
   const selected = doc.bodies.find((body) => body.id === selectedId.value) ?? doc.bodies[0];
   return (
     <aside className="panel">
       <div className="tabs">
-        {(['layers', 'options', 'tools', 'data', 'validation'] as const).map((name) => (
+        {(['guide', 'layers', 'options', 'tools', 'data', 'validation'] as const).map((name) => (
           <button
             key={name}
             type="button"
@@ -51,9 +44,10 @@ export function SidePanels() {
           </button>
         ))}
       </div>
+      {panel.value === 'guide' ? <Guide /> : null}
       {panel.value === 'layers' ? <Layers /> : null}
       {panel.value === 'options' ? <OptionsPanel /> : null}
-      {panel.value === 'tools' && selected ? <Editor body={selected} onChange={patchBody} /> : null}
+      {panel.value === 'tools' && selected ? <Editor body={selected} /> : null}
       {panel.value === 'data' && selected ? <Data body={selected} /> : null}
       {panel.value === 'validation' ? <Validation /> : null}
       {statusMessage.value ? <p className="status">{statusMessage.value}</p> : null}
@@ -64,7 +58,7 @@ export function SidePanels() {
 function Layers() {
   return (
     <div className="stack">
-      <label>
+      <label className="check">
         <input
           type="checkbox"
           checked={showOrbits.value}
@@ -74,7 +68,7 @@ function Layers() {
         />
         {t('orbits')}
       </label>
-      <label>
+      <label className="check">
         <input
           type="checkbox"
           checked={showLabels.value}
@@ -84,7 +78,7 @@ function Layers() {
         />
         {t('labels')}
       </label>
-      <label>
+      <label className="check">
         <input
           type="checkbox"
           checked={showBelts.value}
@@ -96,97 +90,6 @@ function Layers() {
       </label>
     </div>
   );
-}
-
-function Editor({ body, onChange }: { body: Body; onChange: (id: string, next: Body) => void }) {
-  const warnings = stabilityNotes(body);
-  const orbit = body.orbit;
-  return (
-    <div className="stack">
-      <label>
-        Name
-        <input
-          value={body.name}
-          onInput={(event) => onChange(body.id, { ...body, name: event.currentTarget.value })}
-        />
-      </label>
-      <NumberField
-        label="Mass (kg)"
-        value={body.massKg}
-        onChange={(massKg) => onChange(body.id, { ...body, massKg })}
-      />
-      <NumberField
-        label="Radius (km)"
-        value={body.radiusM / 1000}
-        onChange={(km) => onChange(body.id, { ...body, radiusM: km * 1000 })}
-      />
-      {orbit ? (
-        <>
-          <NumberField
-            label="Semi-major axis (AU)"
-            value={orbit.a / AU_M}
-            onChange={(au) => onChange(body.id, { ...body, orbit: { ...orbit, a: au * AU_M } })}
-          />
-          <NumberField
-            label="Eccentricity"
-            value={orbit.e}
-            onChange={(eccentricity) =>
-              onChange(body.id, {
-                ...body,
-                orbit: { ...orbit, e: Math.min(0.999, Math.max(0, eccentricity)) },
-              })
-            }
-          />
-          <NumberField
-            label="Inclination (deg)"
-            value={radToDeg(orbit.i)}
-            onChange={(degrees) =>
-              onChange(body.id, {
-                ...body,
-                orbit: { ...orbit, i: (degrees * Math.PI) / 180 },
-              })
-            }
-          />
-        </>
-      ) : null}
-      {warnings.map((warning) => (
-        <p key={warning} className="warn">
-          {warning}
-        </p>
-      ))}
-    </div>
-  );
-}
-
-function stabilityNotes(body: Body): string[] {
-  const notes: string[] = [];
-  if (!body.orbit || body.parentId === null) return notes;
-  const doc = system.value;
-  const parent = bodyById(doc, body.parentId);
-  const hill = hillRadius(body.orbit.a, body.orbit.e, body.massKg, parent.massKg);
-  const moons = doc.bodies.filter((item) => item.parentId === body.id && item.orbit);
-  for (const moon of moons) {
-    if (moon.orbit && moon.orbit.a > hill) {
-      notes.push(`${moon.name} is outside the Hill sphere.`);
-    }
-  }
-  const siblings = doc.bodies.filter(
-    (item) => item.parentId === body.parentId && item.id !== body.id && item.orbit,
-  );
-  for (const sibling of siblings) {
-    if (!sibling.orbit) continue;
-    const spacing = mutualHillSeparation(
-      body.orbit.a,
-      sibling.orbit.a,
-      body.massKg,
-      sibling.massKg,
-      parent.massKg,
-    );
-    if (spacing < MUTUAL_HILL_STABLE) {
-      notes.push(`${body.name} and ${sibling.name} are closer than a stable Hill spacing.`);
-    }
-  }
-  return notes;
 }
 
 function Data({ body }: { body: Body }) {
@@ -259,26 +162,3 @@ function Validation() {
   );
 }
 
-function NumberField({
-  label,
-  value,
-  onChange,
-}: {
-  label: string;
-  value: number;
-  onChange: (value: number) => void;
-}) {
-  return (
-    <label>
-      {label}
-      <input
-        type="number"
-        value={Number.isFinite(value) ? value : 0}
-        onInput={(event) => {
-          const next = Number(event.currentTarget.value);
-          if (Number.isFinite(next)) onChange(next);
-        }}
-      />
-    </label>
-  );
-}

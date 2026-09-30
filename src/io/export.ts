@@ -18,16 +18,6 @@ export function bodiesCsv(doc: SystemDocument): string {
   return [header.join(','), ...lines].join('\n');
 }
 
-export function almanacMarkdown(doc: SystemDocument): string {
-  const rows = doc.bodies
-    .map((body) => `| ${body.name} | ${body.kind} | ${body.parentId ?? '—'} |`)
-    .join('\n');
-  const calendar = doc.calendar
-    ? `Year type: ${doc.calendar.type}. Months: ${doc.calendar.monthNames.join(', ')}.`
-    : 'No calendar has been generated.';
-  return `# ${doc.name}\n\n${calendar}\n\n| Name | Kind | Parent |\n| --- | --- | --- |\n${rows}\n`;
-}
-
 export function eventsIcs(title: string, events: readonly { name: string; jd: number }[]): string {
   const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', `X-WR-CALNAME:${title}`];
   for (const event of events) {

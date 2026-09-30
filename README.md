@@ -10,6 +10,19 @@ The interface is inspired by [Azgaar's Fantasy Map Generator](https://github.com
 
 Open the live site, or download the single-file build from [Releases](https://github.com/Jopo12321/web-astronomical-simulator/releases) and double-click it. Nothing needs to be installed.
 
+## Using the app
+
+Open the live site. The **Guide** tab in the side panel explains every button. Short version:
+
+- **Load Solar System** replaces the system on screen with the real Solar System. It asks first. Files you already saved are not deleted.
+- **Save** downloads a `.ssim.json` file. **Load**, or dropping that file on the page, opens it again.
+- **Play** and **days/s** move the simulation clock.
+- **Tools** edits the selected body: distance, mass, orbit angles in degrees, day length, and axial tilt. **Add planet** and **Add moon** create bodies. The star cannot be deleted.
+- **Almanac** downloads a readable handout. It builds a calendar for the home world if you have not already, and it lists distances and eclipses. You do not need another button first.
+- **CSV** is a spreadsheet of the bodies. **Calendar file** is an `.ics` of the epoch. **Share** copies a link.
+
+The same text is in the Guide tab, which is the place to look while you use the app.
+
 ## Develop
 
 This repository is built in GitHub Actions (Node.js is not required on the machine that edits the files).

@@ -1,8 +1,9 @@
-﻿import { effect } from '@preact/signals';
+import { effect } from '@preact/signals';
 import { useEffect, useRef } from 'preact/hooks';
 import { solSystem } from '../core/presets/sol';
 import { jdToCalendar } from '../core/time/julian';
-import { almanacMarkdown, bodiesCsv, eventsIcs } from '../io/export';
+import { almanacMarkdown, withCalendar } from '../io/almanac';
+import { bodiesCsv, eventsIcs } from '../io/export';
 import { downloadSystem, downloadText, readSystemFile } from '../io/file';
 import { decodeShare, encodeShare } from '../io/share';
 import { loadSlot, saveSlot } from '../io/storage';
@@ -85,7 +86,7 @@ export function App() {
           <p>{system.value.name}</p>
         </div>
         <div className="toolbar">
-          <button type="button" onClick={() => replaceSystem(solSystem())}>
+          <button type="button" onClick={() => loadSolar()}>
             {t('solarSystem')}
           </button>
           <button
@@ -119,9 +120,11 @@ export function App() {
           </button>
           <button
             type="button"
-            onClick={() =>
-              downloadText('almanac.md', almanacMarkdown(system.value), 'text/markdown')
-            }
+            onClick={() => {
+              const next = withCalendar(system.value);
+              if (next.calendar && !system.value.calendar) system.value = next;
+              downloadText('almanac.md', almanacMarkdown(next), 'text/markdown');
+            }}
           >
             {t('almanac')}
           </button>
@@ -209,6 +212,15 @@ function depth(parentId: string | null): number {
 
 function pad(value: number): string {
   return String(value).padStart(2, '0');
+}
+
+function loadSolar(): void {
+  const current = system.value;
+  const fresh = solSystem();
+  const same =
+    current.name === fresh.name && JSON.stringify(current.bodies) === JSON.stringify(fresh.bodies);
+  if (!same && !window.confirm('Replace the system on screen?')) return;
+  replaceSystem(fresh);
 }
 
 async function loadFile(file: File): Promise<void> {
