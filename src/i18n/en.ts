@@ -1,0 +1,22 @@
+﻿export const en = {
+  appTitle: 'Web Astronomical Simulator',
+  tagline: 'Fantasy star systems, calculated',
+  save: 'Save',
+  load: 'Load',
+  solarSystem: 'Solar System',
+  layers: 'Layers',
+  tools: 'Tools',
+  data: 'Data',
+  validation: 'Validation',
+  play: 'Play',
+  pause: 'Pause',
+  bodies: 'Bodies',
+  runChecks: 'Run Solar System checks',
+  dropToLoad: 'Drop a .ssim.json file to load it',
+  loadError: 'That file could not be read as a system.',
+  orbits: 'Orbits',
+  labels: 'Labels',
+  belts: 'Belts and rings',
+} as const;
+
+export type MessageKey = keyof typeof en;
