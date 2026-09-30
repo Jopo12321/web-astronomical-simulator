@@ -1,4 +1,4 @@
-import type { ComponentChildren } from 'preact';
+﻿import type { ComponentChildren } from 'preact';
 import { AU_M } from '../core/constants';
 import { degToRad, radToDeg } from '../core/math/angles';
 import { norm } from '../core/math/vec';
@@ -287,11 +287,11 @@ function Field({
   children: ComponentChildren;
 }) {
   return (
-    <label className="field">
+    <div className="field">
       <span>{label}</span>
       {children}
       <span className="help">{hint}</span>
-    </label>
+    </div>
   );
 }
 
