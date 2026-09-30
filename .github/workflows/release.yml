@@ -25,4 +25,10 @@ jobs:
       - name: Publish
         uses: softprops/action-gh-release@v2
         with:
-          files: dist-offline/index.html
+          files: dist-offline/web-astronomical-simulator.html
+          body: |
+            Download `web-astronomical-simulator.html` and open that file in a browser. GitHub does not run it.
+
+            The live app is https://jopo12321.github.io/web-astronomical-simulator/
+
+            The user guide is https://github.com/Jopo12321/web-astronomical-simulator/blob/main/docs/GUIDE.md

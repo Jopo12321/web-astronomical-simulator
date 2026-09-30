@@ -154,26 +154,28 @@ export function App() {
           >
             {t('share')}
           </button>
-          <span className="clock">{stamp}</span>
-          <button
-            type="button"
-            onClick={() => {
-              playing.value = !playing.value;
-            }}
-          >
-            {playing.value ? t('pause') : t('play')}
-          </button>
-          <label className="speed">
-            days/s
-            <input
-              type="number"
-              min="0"
-              value={daysPerSecond.value}
-              onInput={(event) => {
-                daysPerSecond.value = Number(event.currentTarget.value) || 0;
+          <div className="playback">
+            <span className="clock">{stamp}</span>
+            <button
+              type="button"
+              onClick={() => {
+                playing.value = !playing.value;
               }}
-            />
-          </label>
+            >
+              {playing.value ? t('pause') : t('play')}
+            </button>
+            <label className="speed">
+              days/s
+              <input
+                type="number"
+                min="0"
+                value={daysPerSecond.value}
+                onInput={(event) => {
+                  daysPerSecond.value = Number(event.currentTarget.value) || 0;
+                }}
+              />
+            </label>
+          </div>
         </div>
       </header>
       <div className="workspace">

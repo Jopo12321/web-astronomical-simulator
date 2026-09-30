@@ -33,6 +33,18 @@ Daily insolation is the Berger (1978) daylight integral. Seasonal temperature is
 
 The habitable zone uses the Kopparapu et al. (2014) runaway-greenhouse and maximum-greenhouse polynomials. Atmosphere retention uses the Zahnle and Catling (2017) shoreline slope, with Mars placed on the line.
 
+Azgaar's map does not read an orbit. It takes three yearly sea-level temperatures: the equator, the north pole, and the south pole. Those are the annual means of the matching bands on the seasonal grid. Rainfall is not calculated. Eclipses are too short to change the yearly means. A tidally locked world, one whose spin period is within 5% of its orbital period, can still use two different pole temperatures.
+
+## Sunlight, tides, and limits
+
+Each line in Data is tagged so a constraint is not mistaken for a story decision.
+
+- **Sunlight, required by the orbit.** Flux at distance `d` is `L / (4 π d²)`. Earth's comparison is the solar luminosity at 1 AU, about 1361 W/m². For a moon, `d` is the planet's distance from the star.
+- **Tides, a likely consequence.** The pull across the body is `2 G M R / d³`, divided by the same pull of the Moon on Earth. For a moon, `M` and `d` are the parent planet. The panel reports the stronger of the parent and the largest moon. The number does not fix a culture.
+- **Roche limit, required.** `2.44 R (ρ_parent / ρ_body)^(1/3)`, with density from mass and volume. Inside that distance the body cannot hold together.
+- **Hill sphere, a limit.** `a (1 − e) (m / 3M)^(1/3)` around the parent. A moon inside it can be kept by the parent. That is not a promise the orbit stays quiet for millions of years.
+- **Parent in the sky, a likely consequence.** A moon sees its planet as `2 arcsin(R / d)` degrees wide. The Moon from Earth is about 0.5°.
+
 ## Constants
 
 See `src/core/constants.ts` and `docs/DATA_SOURCES.md`. Published values that do not fit in an IEEE-754 number are rounded by the language; the comment keeps the official digits.

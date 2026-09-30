@@ -50,6 +50,11 @@ export const en = {
   guideAzgaarTitle: 'Azgaar’s map',
   guideAzgaar:
     'Azgaar’s map uses only three temperatures: equator, north pole, and south pole. Data and the Almanac give those for the home world, and Copy for Azgaar puts them on the clipboard. Rainfall is not astronomy, so precipitation stays a choice in Azgaar. Day length, tides, eclipses, and how big the giant looks are for the story, not for the map generator.',
+  guideDocsTitle: 'Written notes',
+  guideDocsLead: 'The same notes are on GitHub, with pictures in the user guide.',
+  guideDocsGuide: 'User guide',
+  guideDocsPhysics: 'Physics notes',
+  guideDocsSources: 'Data sources',
 } as const;
 
 export type MessageKey = keyof typeof en;

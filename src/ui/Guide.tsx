@@ -38,6 +38,25 @@ export function Guide() {
       <p>{t('guideDistance')}</p>
       <h2>{t('guideAzgaarTitle')}</h2>
       <p>{t('guideAzgaar')}</p>
+      <h2>{t('guideDocsTitle')}</h2>
+      <p>{t('guideDocsLead')}</p>
+      <ul>
+        <li>
+          <a href="https://github.com/Jopo12321/web-astronomical-simulator/blob/main/docs/GUIDE.md">
+            {t('guideDocsGuide')}
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/Jopo12321/web-astronomical-simulator/blob/main/docs/PHYSICS.md">
+            {t('guideDocsPhysics')}
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/Jopo12321/web-astronomical-simulator/blob/main/docs/DATA_SOURCES.md">
+            {t('guideDocsSources')}
+          </a>
+        </li>
+      </ul>
     </div>
   );
 }
