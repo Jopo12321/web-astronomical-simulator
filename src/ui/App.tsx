@@ -1,4 +1,4 @@
-﻿import { effect } from '@preact/signals';
+import { effect } from '@preact/signals';
 import { useEffect, useRef } from 'preact/hooks';
 import { solSystem } from '../core/presets/sol';
 import { jdToCalendar } from '../core/time/julian';

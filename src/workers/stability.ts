@@ -1,4 +1,4 @@
-﻿import { leapfrog, type NBody } from '../core/orbits/nbody';
+import { leapfrog, type NBody } from '../core/orbits/nbody';
 
 const scope = globalThis as unknown as {
   onmessage: ((event: MessageEvent<{ bodies: NBody[]; dt: number; steps: number }>) => void) | null;

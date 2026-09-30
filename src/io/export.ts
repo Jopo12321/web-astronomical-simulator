@@ -1,4 +1,4 @@
-﻿import { AU_M } from '../core/constants';
+import { AU_M } from '../core/constants';
 import type { SystemDocument } from '../core/model/schema';
 
 export function bodiesCsv(doc: SystemDocument): string {

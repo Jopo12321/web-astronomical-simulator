@@ -1,4 +1,4 @@
-﻿import type { Body } from '../core/model/schema';
+import type { Body } from '../core/model/schema';
 import { placeSystem } from '../core/orbits/system';
 import { selectedId, showBelts, showLabels, showOrbits, system, viewJd } from './state';
 

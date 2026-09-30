@@ -1,4 +1,4 @@
-﻿import { AU_M, L_SUN_W } from '../constants';
+import { AU_M, L_SUN_W } from '../constants';
 
 /**
  * Kopparapu et al. 2014 polynomial for stellar flux at a habitable-zone edge,

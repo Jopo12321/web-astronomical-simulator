@@ -1,4 +1,4 @@
-﻿import { AU_M, DAY_S, G, L_SUN_W } from '../core/constants';
+import { AU_M, DAY_S, G, L_SUN_W } from '../core/constants';
 import { radToDeg } from '../core/math/angles';
 import { bodyById } from '../core/model/document';
 import type { Body } from '../core/model/schema';

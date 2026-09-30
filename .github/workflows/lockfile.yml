@@ -1,4 +1,4 @@
-﻿name: Update lockfile
+name: Update lockfile
 
 on:
   push:

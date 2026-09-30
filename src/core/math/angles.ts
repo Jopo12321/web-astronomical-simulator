@@ -1,4 +1,4 @@
-﻿export const DEG = Math.PI / 180;
+export const DEG = Math.PI / 180;
 export const ARCSEC = DEG / 3600;
 
 export function degToRad(degrees: number): number {

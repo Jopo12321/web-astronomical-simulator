@@ -1,4 +1,4 @@
-﻿import { parseSystemDocument } from '../core/model/document';
+import { parseSystemDocument } from '../core/model/document';
 import type { SystemDocument } from '../core/model/schema';
 
 export function serializeSystem(doc: SystemDocument): string {

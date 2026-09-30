@@ -1,4 +1,4 @@
-﻿/** Holman & Wiegert 1999 critical semi-major axis, as a fraction of the binary separation. */
+/** Holman & Wiegert 1999 critical semi-major axis, as a fraction of the binary separation. */
 export function circumbinaryCritical(massRatio: number, eccentricity: number): number {
   const mu = massRatio;
   const e = eccentricity;

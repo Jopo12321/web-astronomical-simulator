@@ -1,4 +1,4 @@
-﻿import { signal } from '@preact/signals';
+import { signal } from '@preact/signals';
 import { solSystem } from '../core/presets/sol';
 import type { SystemDocument } from '../core/model/schema';
 

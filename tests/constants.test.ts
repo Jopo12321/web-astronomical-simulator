@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { AU_M, GM_SUN, J2000_JD } from '../src/core/constants';
 
 describe('constants', () => {

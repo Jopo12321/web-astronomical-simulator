@@ -1,4 +1,4 @@
-﻿import { G } from '../constants';
+import { G } from '../constants';
 import { add, norm, scale, sub, type Vec3 } from '../math/vec';
 
 export interface NBody {

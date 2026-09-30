@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { AU_M, GM_SUN, G } from '../src/core/constants';
 import { leapRule } from '../src/core/calendar/leap';
 import { circumbinaryCritical } from '../src/core/orbits/binary';

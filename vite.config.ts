@@ -1,4 +1,4 @@
-﻿import preact from '@preact/preset-vite';
+import preact from '@preact/preset-vite';
 import { defineConfig, type Plugin } from 'vite';
 
 function inlineBuild(): Plugin {

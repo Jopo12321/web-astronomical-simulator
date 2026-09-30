@@ -1,4 +1,4 @@
-﻿# Progress
+# Progress
 
 ## Phase 1 — Bootstrap
 

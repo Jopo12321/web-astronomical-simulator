@@ -1,4 +1,4 @@
-﻿import { DAY_S, G, JULIAN_CENTURY_D } from '../constants';
+import { DAY_S, G, JULIAN_CENTURY_D } from '../constants';
 import { degToRad } from '../math/angles';
 import type { OrbitalElements } from '../orbits/elements';
 import { periodSeconds } from '../orbits/elements';

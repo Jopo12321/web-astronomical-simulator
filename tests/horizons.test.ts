@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { solSystem } from '../src/core/presets/sol';
 import { checkHorizons } from '../src/core/validate/horizons';
 

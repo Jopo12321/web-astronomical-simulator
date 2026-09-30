@@ -1,4 +1,4 @@
-﻿import { dailyMeanInsolation } from './insolation';
+import { dailyMeanInsolation } from './insolation';
 
 export interface TemperatureGrid {
   latitudesDeg: number[];

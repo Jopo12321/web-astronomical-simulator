@@ -1,4 +1,4 @@
-﻿import { J2000_JD } from '../constants';
+import { J2000_JD } from '../constants';
 import { wrapTwoPi } from '../math/angles';
 
 /** Meeus chapter 47 lunar terms. Longitude/distance and latitude series. */

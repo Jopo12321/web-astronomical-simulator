@@ -1,4 +1,4 @@
-﻿import { wrapPi, wrapTwoPi } from '../math/angles';
+import { wrapPi, wrapTwoPi } from '../math/angles';
 import { lonLatRange } from '../math/vec';
 import type { SystemDocument } from '../model/schema';
 import { placeSystem } from '../orbits/system';

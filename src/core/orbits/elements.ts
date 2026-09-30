@@ -1,4 +1,4 @@
-﻿import { DAY_S, JULIAN_CENTURY_D } from '../constants';
+import { DAY_S, JULIAN_CENTURY_D } from '../constants';
 import { wrapTwoPi } from '../math/angles';
 import { cross, dot, norm, unit, type Vec3 } from '../math/vec';
 import { eccentricAnomaly, trueAnomalyFromEccentric } from './kepler';

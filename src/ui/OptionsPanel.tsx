@@ -1,4 +1,4 @@
-﻿import { buildSolarCalendar } from '../core/calendar/leap';
+import { buildSolarCalendar } from '../core/calendar/leap';
 import { G } from '../core/constants';
 import { generateSystem } from '../core/generate/system';
 import { bodyById } from '../core/model/document';

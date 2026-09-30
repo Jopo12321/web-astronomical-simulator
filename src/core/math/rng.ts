@@ -1,4 +1,4 @@
-﻿/** cyrb128 string hash, then sfc32. Same seed always yields the same sequence. */
+/** cyrb128 string hash, then sfc32. Same seed always yields the same sequence. */
 export function hashSeed(seed: string): [number, number, number, number] {
   let h1 = 1779033703;
   let h2 = 3144134277;

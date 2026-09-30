@@ -1,4 +1,4 @@
-﻿import { AU_M, G, GM_EARTH, GM_MOON, GM_SUN, J2000_JD } from '../constants';
+import { AU_M, G, GM_EARTH, GM_MOON, GM_SUN, J2000_JD } from '../constants';
 import { degToRad } from '../math/angles';
 import { parseSystemDocument } from '../model/document';
 import type { Body, OrbitalElementsData, SystemDocument } from '../model/schema';

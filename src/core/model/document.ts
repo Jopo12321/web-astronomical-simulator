@@ -1,4 +1,4 @@
-﻿import { systemDocumentSchema, type SystemDocument } from './schema';
+import { systemDocumentSchema, type SystemDocument } from './schema';
 
 export type { Body, CalendarSpec, GeneratorSettings, SystemDocument } from './schema';
 

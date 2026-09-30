@@ -1,4 +1,4 @@
-﻿import { C, DAY_S, J2000_JD } from '../constants';
+import { C, DAY_S, J2000_JD } from '../constants';
 import { wrapPi, wrapTwoPi } from '../math/angles';
 import { norm } from '../math/vec';
 import type { OrbitalElements } from '../orbits/elements';

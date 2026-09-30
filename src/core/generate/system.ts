@@ -1,4 +1,4 @@
-﻿import { AU_M, G, GM_SUN, J2000_JD, L_SUN_W, R_SUN_M, SIGMA } from '../constants';
+import { AU_M, G, GM_SUN, J2000_JD, L_SUN_W, R_SUN_M, SIGMA } from '../constants';
 import { sfc32 } from '../math/rng';
 import { parseSystemDocument } from '../model/document';
 import type { Body, GeneratorSettings, SystemDocument } from '../model/schema';

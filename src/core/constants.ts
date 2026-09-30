@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Physical and astronomical constants.
  * Each value names the defining source. Do not "round for convenience" here;
  * derived displays round at the UI boundary.

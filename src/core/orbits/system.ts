@@ -1,4 +1,4 @@
-﻿import { G } from '../constants';
+import { G } from '../constants';
 import { add, scale, sub, type Vec3 } from '../math/vec';
 import { bodyById, type SystemDocument } from '../model/document';
 import type { Body } from '../model/schema';

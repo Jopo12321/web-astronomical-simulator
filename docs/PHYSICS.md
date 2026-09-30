@@ -1,4 +1,4 @@
-﻿# Physics models
+# Physics models
 
 The default engine is analytic. Dates are reproducible, and nothing here integrates an n-body trajectory unless you turn that check on later.
 

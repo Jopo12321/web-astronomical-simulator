@@ -1,4 +1,4 @@
-﻿import type { SystemDocument } from '../core/model/schema';
+import type { SystemDocument } from '../core/model/schema';
 import { parseSystemDocument } from '../core/model/document';
 
 const DB_NAME = 'web-astronomical-simulator';

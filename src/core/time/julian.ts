@@ -1,4 +1,4 @@
-﻿import { J2000_JD } from '../constants';
+import { J2000_JD } from '../constants';
 
 export interface CalendarDate {
   year: number;

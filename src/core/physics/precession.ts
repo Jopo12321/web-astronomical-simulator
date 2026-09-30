@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Spin-axis precession from the star and any moons.
  * Solar torque follows the standard (3/2) n²/ω (C−A)/C cos ε formula.
  * Each moon adds a factor (m_moon/m_star) (a_planet/a_moon)³.

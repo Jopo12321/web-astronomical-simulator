@@ -1,4 +1,4 @@
-﻿import { sunriseHourAngle } from './solar';
+import { sunriseHourAngle } from './solar';
 
 /** Daily-mean insolation, W/m². Berger (1978) integral over the daylight hemisphere. */
 export function dailyMeanInsolation(

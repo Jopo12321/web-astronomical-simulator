@@ -1,4 +1,4 @@
-﻿import { parseSystemDocument } from '../core/model/document';
+import { parseSystemDocument } from '../core/model/document';
 import type { SystemDocument } from '../core/model/schema';
 
 function bytesToBase64(bytes: Uint8Array): string {

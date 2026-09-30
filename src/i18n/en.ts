@@ -1,4 +1,4 @@
-﻿export const en = {
+export const en = {
   appTitle: 'Web Astronomical Simulator',
   tagline: 'Fantasy star systems, calculated',
   save: 'Save',

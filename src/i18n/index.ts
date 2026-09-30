@@ -1,4 +1,4 @@
-﻿import { en, type MessageKey } from './en';
+import { en, type MessageKey } from './en';
 
 const catalogs = { en };
 export type Locale = keyof typeof catalogs;

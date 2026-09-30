@@ -1,4 +1,4 @@
-﻿import type { CalendarSpec } from '../model/schema';
+import type { CalendarSpec } from '../model/schema';
 
 interface LeapRule {
   every: number;

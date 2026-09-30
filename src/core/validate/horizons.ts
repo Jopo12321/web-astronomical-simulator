@@ -1,4 +1,4 @@
-﻿import { GM_SUN } from '../constants';
+import { GM_SUN } from '../constants';
 import { wrapPi } from '../math/angles';
 import { lonLatRange } from '../math/vec';
 import type { SystemDocument } from '../model/schema';

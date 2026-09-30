@@ -1,4 +1,4 @@
-﻿/** Hill radius around a secondary of mass `secondaryKg` orbiting `primaryKg`. */
+/** Hill radius around a secondary of mass `secondaryKg` orbiting `primaryKg`. */
 export function hillRadius(
   semiMajorAxis: number,
   eccentricity: number,

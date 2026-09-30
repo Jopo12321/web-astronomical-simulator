@@ -1,4 +1,4 @@
-﻿import { wrapPi, wrapTwoPi } from '../math/angles';
+import { wrapPi, wrapTwoPi } from '../math/angles';
 
 /**
  * Solve Kepler's equation M = E − e sin E for the eccentric anomaly.

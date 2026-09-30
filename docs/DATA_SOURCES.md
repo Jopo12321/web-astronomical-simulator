@@ -1,4 +1,4 @@
-﻿# Data sources
+# Data sources
 
 Constants and the Solar System preset cite the page they were taken from. Test fixtures record the retrieval date.
 

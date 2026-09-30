@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { AU_M, DAY_S, GM_SUN, J2000_JD } from '../src/core/constants';
 import { wrapPi } from '../src/core/math/angles';
 import { sfc32 } from '../src/core/math/rng';

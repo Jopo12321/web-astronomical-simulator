@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { G, GM_SUN, L_SUN_W, SIGMA, T_SUN_K } from '../src/core/constants';
 import {
   daylightSeconds,

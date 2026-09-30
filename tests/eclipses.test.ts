@@ -1,4 +1,4 @@
-﻿import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { J2000_JD } from '../src/core/constants';
 import { findConjunctions, sarosPairs } from '../src/core/sky/events';
 import {
