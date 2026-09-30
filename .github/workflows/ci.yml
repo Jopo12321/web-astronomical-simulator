@@ -33,7 +33,20 @@ jobs:
           fi
 
       - name: Lint
-        run: npm run lint
+        run: |
+          set +e
+          npm run lint > lint-out.txt 2>&1
+          code=$?
+          if [ "$code" -ne 0 ]; then
+            count=0
+            while IFS= read -r line; do
+              count=$((count + 1))
+              if [ "$count" -le 80 ]; then
+                echo "::error::${line:0:400}"
+              fi
+            done < lint-out.txt
+          fi
+          exit "$code"
 
       - name: Typecheck
         run: npm run typecheck
