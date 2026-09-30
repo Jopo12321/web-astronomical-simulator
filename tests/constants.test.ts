@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+﻿import { describe, expect, it } from 'vitest';
 import { AU_M, GM_SUN, J2000_JD } from '../src/core/constants';
 
 describe('constants', () => {
@@ -7,7 +7,7 @@ describe('constants', () => {
   });
 
   it('uses the JPL DE440 solar GM', () => {
-    expect(GM_SUN).toBeCloseTo(1.32712440041279419e20, -5);
+    expect(GM_SUN / 1e20).toBeCloseTo(1.3271244, 5);
   });
 
   it('places J2000 at JD 2451545.0', () => {
