@@ -13,6 +13,10 @@ Kepler solver, element propagation, barycentric moons, and the versioned system 
 
 JPL Table 1 orbits for the eight planets, checked against Horizons samples from 1900 to 2050.
 
+## Phase 3 — Derived values and climate
+
+Gravity, escape speed, solar day, habitable zone, seasons, daylight, and a seasonal temperature model. Checked against the NASA fact sheet and USNO.
+
 ## Next
 
-Derived planet values (gravity, day length, habitable zone) and climate.
+Eclipses, phases, and the Meeus Moon for the Solar System.

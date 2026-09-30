@@ -167,16 +167,16 @@ export function elementsFromState(state: StateVector, gm: number): OrbitalElemen
   const a = -gm / (2 * energy);
   const i = Math.acos(Math.min(1, Math.max(-1, h[2] / hNorm)));
   const Omega = norm(node) < 1e-8 ? 0 : angleFromVectors([1, 0, 0], node, node[1]);
+  const circular = e < 1e-8;
+  const equatorial = norm(node) < 1e-8;
   const omega =
-    e < 1e-8 || norm(node) < 1e-8
+    circular || equatorial
       ? 0
       : angleFromVectors(node, eccentricityVector, eccentricityVector[2]);
-  const periapsis =
-    e < 1e-8
-      ? norm(node) < 1e-8
-        ? ([1, 0, 0] as const)
-        : unit(node)
-      : unit(eccentricityVector);
+  let periapsis: Vec3 = unit(eccentricityVector);
+  if (circular) {
+    periapsis = equatorial ? [1, 0, 0] : unit(node);
+  }
   const nu = angleFromVectors(periapsis, r, dot(r, v));
   const cosNu = Math.cos(nu);
   const sinNu = Math.sin(nu);

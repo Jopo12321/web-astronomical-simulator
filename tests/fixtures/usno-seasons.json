@@ -1,0 +1,556 @@
+{
+  "source": "USNO seasons API",
+  "retrieved": "2026-09-30",
+  "years": [
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 5,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "07:48",
+          "year": 2020
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "03:50",
+          "year": 2020
+        },
+        {
+          "day": 20,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "21:44",
+          "year": 2020
+        },
+        {
+          "day": 4,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "11:35",
+          "year": 2020
+        },
+        {
+          "day": 22,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "13:31",
+          "year": 2020
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "10:02",
+          "year": 2020
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2020
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 2,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "13:50",
+          "year": 2021
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "09:37",
+          "year": 2021
+        },
+        {
+          "day": 21,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "03:32",
+          "year": 2021
+        },
+        {
+          "day": 5,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "22:27",
+          "year": 2021
+        },
+        {
+          "day": 22,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "19:21",
+          "year": 2021
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "15:59",
+          "year": 2021
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2021
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 4,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "06:54",
+          "year": 2022
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "15:33",
+          "year": 2022
+        },
+        {
+          "day": 21,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "09:14",
+          "year": 2022
+        },
+        {
+          "day": 4,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "07:11",
+          "year": 2022
+        },
+        {
+          "day": 23,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "01:04",
+          "year": 2022
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "21:48",
+          "year": 2022
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2022
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 4,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "16:17",
+          "year": 2023
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "21:24",
+          "year": 2023
+        },
+        {
+          "day": 21,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "14:58",
+          "year": 2023
+        },
+        {
+          "day": 6,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "20:06",
+          "year": 2023
+        },
+        {
+          "day": 23,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "06:50",
+          "year": 2023
+        },
+        {
+          "day": 22,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "03:27",
+          "year": 2023
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2023
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 3,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "00:38",
+          "year": 2024
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "03:06",
+          "year": 2024
+        },
+        {
+          "day": 20,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "20:51",
+          "year": 2024
+        },
+        {
+          "day": 5,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "05:06",
+          "year": 2024
+        },
+        {
+          "day": 22,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "12:44",
+          "year": 2024
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "09:20",
+          "year": 2024
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2024
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 4,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "13:28",
+          "year": 2025
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "09:01",
+          "year": 2025
+        },
+        {
+          "day": 21,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "02:42",
+          "year": 2025
+        },
+        {
+          "day": 3,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "19:55",
+          "year": 2025
+        },
+        {
+          "day": 22,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "18:19",
+          "year": 2025
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "15:03",
+          "year": 2025
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2025
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 3,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "17:15",
+          "year": 2026
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "14:46",
+          "year": 2026
+        },
+        {
+          "day": 21,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "08:24",
+          "year": 2026
+        },
+        {
+          "day": 6,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "17:30",
+          "year": 2026
+        },
+        {
+          "day": 23,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "00:05",
+          "year": 2026
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "20:50",
+          "year": 2026
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2026
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 3,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "02:33",
+          "year": 2027
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "20:25",
+          "year": 2027
+        },
+        {
+          "day": 21,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "14:11",
+          "year": 2027
+        },
+        {
+          "day": 5,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "05:06",
+          "year": 2027
+        },
+        {
+          "day": 23,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "06:02",
+          "year": 2027
+        },
+        {
+          "day": 22,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "02:42",
+          "year": 2027
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2027
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 5,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "12:28",
+          "year": 2028
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "02:17",
+          "year": 2028
+        },
+        {
+          "day": 20,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "20:02",
+          "year": 2028
+        },
+        {
+          "day": 3,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "22:18",
+          "year": 2028
+        },
+        {
+          "day": 22,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "11:45",
+          "year": 2028
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "08:19",
+          "year": 2028
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2028
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 2,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "18:13",
+          "year": 2029
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "08:02",
+          "year": 2029
+        },
+        {
+          "day": 21,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "01:48",
+          "year": 2029
+        },
+        {
+          "day": 6,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "05:12",
+          "year": 2029
+        },
+        {
+          "day": 22,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "17:38",
+          "year": 2029
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "14:14",
+          "year": 2029
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2029
+    },
+    {
+      "apiversion": "4.0.1",
+      "data": [
+        {
+          "day": 3,
+          "month": 1,
+          "phenom": "Perihelion",
+          "time": "10:12",
+          "year": 2030
+        },
+        {
+          "day": 20,
+          "month": 3,
+          "phenom": "Equinox",
+          "time": "13:52",
+          "year": 2030
+        },
+        {
+          "day": 21,
+          "month": 6,
+          "phenom": "Solstice",
+          "time": "07:31",
+          "year": 2030
+        },
+        {
+          "day": 4,
+          "month": 7,
+          "phenom": "Aphelion",
+          "time": "12:57",
+          "year": 2030
+        },
+        {
+          "day": 22,
+          "month": 9,
+          "phenom": "Equinox",
+          "time": "23:27",
+          "year": 2030
+        },
+        {
+          "day": 21,
+          "month": 12,
+          "phenom": "Solstice",
+          "time": "20:09",
+          "year": 2030
+        }
+      ],
+      "dst": false,
+      "tz": 0,
+      "year": 2030
+    }
+  ]
+}
