@@ -24,7 +24,7 @@ You can also download `web-astronomical-simulator.html` from the [releases](http
 
 ## The map and the list
 
-The map draws orbits around the star. Moons are not dots on that map. A moon is indented under its planet in the list. Select it there, then use **Data** or **Tools**.
+The map draws orbits around the star. Moons are not dots on that map. A moon is listed under its planet. Select the moon and that planet is marked in the list and drawn larger on the map. Then use **Data** or **Tools**.
 
 **Layers** turns orbits, name labels, and belts on or off.
 

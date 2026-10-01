@@ -41,7 +41,7 @@ export const en = {
     'moves the simulation clock forward. days/s is how many simulated days pass each real second.',
   guideSetupTitle: 'Setting up a world',
   guideSetup:
-    'Pick a body in the list, then open Tools. Add planet puts a new world around the star, outside the outermost one. Add moon puts a moon around the body you have selected. Delete removes that body and its moons. The star cannot be deleted.',
+    'Pick a body in the list, then open Tools. Add planet puts a new world around the star, outside the outermost one. Add moon puts a moon around the body you have selected. Delete removes that body and its moons. The star cannot be deleted. A moon is listed under its planet. Select the moon and that planet is marked in the list and drawn larger on the map.',
   guideUnitsTitle: 'Numbers',
   guideUnits:
     'AU is the distance from Earth to the Sun. Planet masses are in Earth masses, and the star is in solar masses. Orbit angles are in degrees: inclination is the tilt of the orbit, the node is where the orbit crosses the reference plane, periapsis is the closest point, and mean anomaly is where the body sits at the start date. Axial tilt is the lean of the spin axis. Watch latitude is the latitude you stand at when the Almanac talks about eclipses. Eclipse separation is how many degrees the moon sits from the center of the star.',

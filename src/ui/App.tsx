@@ -1,5 +1,6 @@
 import { effect } from '@preact/signals';
 import { useEffect, useRef } from 'preact/hooks';
+import type { Body } from '../core/model/schema';
 import { solSystem } from '../core/presets/sol';
 import { jdToCalendar } from '../core/time/julian';
 import { almanacMarkdown, withCalendar } from '../io/almanac';
@@ -180,11 +181,11 @@ export function App() {
       </header>
       <div className="workspace">
         <nav className="tree" aria-label={t('bodies')}>
-          {system.value.bodies.map((body) => (
+          {familyOrder(system.value.bodies).map((body) => (
             <button
               key={body.id}
               type="button"
-              className={body.id === selectedId.value ? 'node selected' : 'node'}
+              className={nodeClass(body, selectedId.value, system.value.bodies)}
               style={{ paddingLeft: `${12 + depth(body.parentId) * 14}px` }}
               onClick={() => {
                 selectedId.value = body.id;
@@ -199,6 +200,40 @@ export function App() {
       </div>
     </div>
   );
+}
+
+function familyOrder(bodies: Body[]): Body[] {
+  const children = new Map<string | null, Body[]>();
+  for (const body of bodies) {
+    const list = children.get(body.parentId) ?? [];
+    list.push(body);
+    children.set(body.parentId, list);
+  }
+  const ordered: Body[] = [];
+  const seen = new Set<string>();
+  const visit = (parentId: string | null) => {
+    for (const body of children.get(parentId) ?? []) {
+      if (seen.has(body.id)) continue;
+      seen.add(body.id);
+      ordered.push(body);
+      visit(body.id);
+    }
+  };
+  visit(null);
+  for (const body of bodies) {
+    if (!seen.has(body.id)) ordered.push(body);
+  }
+  return ordered;
+}
+
+function nodeClass(body: Body, selected: string, bodies: Body[]): string {
+  if (body.id === selected) return 'node selected';
+  const current = bodies.find((item) => item.id === selected);
+  const parent = current?.parentId
+    ? bodies.find((item) => item.id === current.parentId)
+    : undefined;
+  if (parent && parent.id === body.id && parent.parentId !== null) return 'node host';
+  return 'node';
 }
 
 function depth(parentId: string | null): number {

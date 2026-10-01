@@ -2,6 +2,14 @@ import type { Body } from '../core/model/schema';
 import { placeSystem } from '../core/orbits/system';
 import { selectedId, showBelts, showLabels, showOrbits, system, viewJd } from './state';
 
+function hostPlanetId(bodies: Body[], selected: string): string | null {
+  const body = bodies.find((item) => item.id === selected);
+  if (!body?.parentId) return null;
+  const parent = bodies.find((item) => item.id === body.parentId);
+  if (!parent || parent.parentId === null) return null;
+  return parent.id;
+}
+
 function plotRadius(meters: number): number {
   return 18 + Math.log10(Math.max(meters, 1e8) / 1e8) * 42;
 }
@@ -12,6 +20,7 @@ export function OrbitMap() {
   const byId = new Map(placed.map((item) => [item.id, item]));
   const primary = doc.bodies.find((body) => body.parentId === null);
   const children = doc.bodies.filter((body) => body.parentId === primary?.id);
+  const hostId = hostPlanetId(doc.bodies, selectedId.value);
 
   function point(body: Body): { x: number; y: number } | null {
     const state = byId.get(body.id);
@@ -57,8 +66,10 @@ export function OrbitMap() {
             <circle
               cx={at.x}
               cy={at.y}
-              r={body.id === selectedId.value ? 7 : 4.5}
+              r={body.id === selectedId.value || body.id === hostId ? 7 : 4.5}
               fill={body.color ?? '#9ecbff'}
+              stroke={body.id === hostId ? '#7eb6ff' : 'none'}
+              strokeWidth={body.id === hostId ? 2 : 0}
               className="body-dot"
               onClick={() => {
                 selectedId.value = body.id;
